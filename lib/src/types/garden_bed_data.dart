@@ -9,10 +9,15 @@ class GardenBedData {
     this.masterValveId,
     this.allowDelete = false,
     this.isOn = false,
+    this.lastWateringDateTime,
+    this.lastWateringDuration,
   });
 
   GardenBedData.fromBed(GardenBed bed,
-      {required this.allowDelete, required this.isOn})
+      {required this.allowDelete,
+      required this.isOn,
+      this.lastWateringDateTime,
+      this.lastWateringDuration})
       : id = bed.id,
         name = bed.name,
         description = bed.description,
@@ -27,6 +32,12 @@ class GardenBedData {
   bool allowDelete;
   bool isOn;
 
+  /// Last watering date and time
+  DateTime? lastWateringDateTime;
+
+  /// Duration of the last watering event in seconds
+  int? lastWateringDuration;
+
   /// Converts the `GardenBedData` instance to a JSON-serializable object.
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -36,6 +47,8 @@ class GardenBedData {
         'masterValveId': masterValveId,
         'allowDelete': allowDelete,
         'isOn': isOn,
+        'lastWateringDateTime': lastWateringDateTime?.toIso8601String(),
+        'lastWateringDuration': lastWateringDuration,
       };
 
   /// Constructs a `GardenBedData` from a JSON object.
@@ -47,5 +60,9 @@ class GardenBedData {
         masterValveId: json['masterValveId'] as int?,
         allowDelete: json['allowDelete'] as bool? ?? false,
         isOn: json['isOn'] as bool? ?? false,
+        lastWateringDateTime: json['lastWateringDateTime'] != null
+            ? DateTime.parse(json['lastWateringDateTime'] as String)
+            : null,
+        lastWateringDuration: json['lastWateringDuration'] as int?,
       );
 }
