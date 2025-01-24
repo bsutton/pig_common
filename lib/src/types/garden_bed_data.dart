@@ -9,6 +9,7 @@ class GardenBedData {
     this.masterValveId,
     this.allowDelete = false,
     this.isOn = false,
+    this.remainingDuration,
     this.lastWateringDateTime,
     this.lastWateringDuration,
   });
@@ -16,6 +17,7 @@ class GardenBedData {
   GardenBedData.fromBed(GardenBed bed,
       {required this.allowDelete,
       required this.isOn,
+      required this.remainingDuration,
       this.lastWateringDateTime,
       this.lastWateringDuration})
       : id = bed.id,
@@ -24,6 +26,7 @@ class GardenBedData {
         valveId = bed.valveId,
         masterValveId = bed.masterValveId;
 
+  /// [id] can be null if we are creating a new bed
   int? id;
   String? name;
   String? description;
@@ -31,6 +34,10 @@ class GardenBedData {
   int? masterValveId;
   bool allowDelete;
   bool isOn;
+
+  /// If the bed is running on a timer this will
+  /// contain the remaining time.
+  Duration? remainingDuration;
 
   /// Last watering date and time
   DateTime? lastWateringDateTime;
@@ -47,6 +54,7 @@ class GardenBedData {
         'masterValveId': masterValveId,
         'allowDelete': allowDelete,
         'isOn': isOn,
+        'remainingDuration': remainingDuration?.inSeconds,
         'lastWateringDateTime': lastWateringDateTime?.toIso8601String(),
         'lastWateringDuration': lastWateringDuration,
       };
@@ -60,6 +68,9 @@ class GardenBedData {
         masterValveId: json['masterValveId'] as int?,
         allowDelete: json['allowDelete'] as bool? ?? false,
         isOn: json['isOn'] as bool? ?? false,
+        remainingDuration: json['remainingDuration'] != null
+            ? Duration(seconds: json['remainingDuration'] as int)
+            : null,
         lastWateringDateTime: json['lastWateringDateTime'] != null
             ? DateTime.parse(json['lastWateringDateTime'] as String)
             : null,
