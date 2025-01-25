@@ -45,6 +45,12 @@ void main(List<String> arguments) {
   }).join('\n');
 
   // Write the barrel file
-  barrelFile.writeAsStringSync('// Generated file. Do not modify.\n\n$exports');
+  barrelFile.writeAsStringSync('''
+//
+// Generated file. Do not modify.
+// Created by `create_barrel`
+//
+$exports
+''');
   print('Barrel file created: $barrelFilePath');
 }
