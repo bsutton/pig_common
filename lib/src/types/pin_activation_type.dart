@@ -2,13 +2,13 @@
 enum PinActivationType {
   highIsOn(
     label: 'High is On',
-    onState: PinState.high,
-    offState: PinState.low,
+    onState: PinVoltage.high,
+    offState: PinVoltage.low,
   ),
   lowIsOn(
     label: 'Low is On',
-    onState: PinState.low,
-    offState: PinState.high,
+    onState: PinVoltage.low,
+    offState: PinVoltage.high,
   );
 
   const PinActivationType({
@@ -21,10 +21,10 @@ enum PinActivationType {
   final String label;
 
   /// The state of the pin when it is considered "on".
-  final PinState onState;
+  final PinVoltage onState;
 
   /// The state of the pin when it is considered "off".
-  final PinState offState;
+  final PinVoltage offState;
 
   /// Converts the enum to a JSON-serializable string.
   String toJson() => name;
@@ -38,8 +38,10 @@ enum PinActivationType {
   }
 }
 
+enum PinLogic { on, off }
+
 /// Represents the state of a GPIO pin.
-enum PinState {
+enum PinVoltage {
   high,
   low;
 
@@ -47,8 +49,8 @@ enum PinState {
   String toJson() => name;
 
   /// Constructs a `PinState` from a JSON string.
-  factory PinState.fromJson(String json) {
-    return PinState.values.firstWhere(
+  factory PinVoltage.fromJson(String json) {
+    return PinVoltage.values.firstWhere(
       (e) => e.name == json,
       orElse: () => throw ArgumentError('Invalid PinState: $json'),
     );

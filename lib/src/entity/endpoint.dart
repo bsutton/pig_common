@@ -91,4 +91,7 @@ class EndPoint extends Entity<EndPoint> {
   Duration? startupInterval;
 
   bool get isDrainingLine => drainLine;
+
+  @override
+  String toString() => 'EndPoint: $name, pin: $gpioPinNo, $activationType';
 }
