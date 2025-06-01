@@ -38,7 +38,6 @@ enum PinActivationType {
   }
 }
 
-
 /// Represents the state of a GPIO pin.
 enum PinVoltage {
   high,

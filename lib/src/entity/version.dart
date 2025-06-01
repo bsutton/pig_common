@@ -1,4 +1,3 @@
-
 import 'entity.dart';
 
 class Version extends Entity<Version> {
