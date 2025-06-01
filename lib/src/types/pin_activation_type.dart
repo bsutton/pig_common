@@ -20,10 +20,10 @@ enum PinActivationType {
   /// Human-readable label for the activation type.
   final String label;
 
-  /// The state of the pin when it is considered "on".
+  /// The voltage of the pin when it is considered "on".
   final PinVoltage onState;
 
-  /// The state of the pin when it is considered "off".
+  /// The voltage of the pin when it is considered "off".
   final PinVoltage offState;
 
   /// Converts the enum to a JSON-serializable string.
@@ -38,7 +38,6 @@ enum PinActivationType {
   }
 }
 
-enum PinLogic { on, off }
 
 /// Represents the state of a GPIO pin.
 enum PinVoltage {
@@ -48,11 +47,11 @@ enum PinVoltage {
   /// Converts the enum to a JSON-serializable string.
   String toJson() => name;
 
-  /// Constructs a `PinState` from a JSON string.
+  /// Constructs a [PinVoltage] from a JSON string.
   factory PinVoltage.fromJson(String json) {
     return PinVoltage.values.firstWhere(
       (e) => e.name == json,
-      orElse: () => throw ArgumentError('Invalid PinState: $json'),
+      orElse: () => throw ArgumentError('Invalid PinVoltage: $json'),
     );
   }
 }
