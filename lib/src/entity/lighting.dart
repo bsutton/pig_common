@@ -1,4 +1,4 @@
-import 'endpoint.dart';
+import 'end_point.dart';
 import 'entity.dart';
 import 'garden_feature.dart';
 
