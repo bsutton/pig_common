@@ -1,11 +1,12 @@
 // lib/src/model/history_data.dart
 
-import 'package:pig_common/pig_common.dart'; // Adjust import if needed
+import '../../pig_common.dart'; // Adjust import if needed
 
 /// A transfer‐object that combines raw History fields with a human‐readable
 /// feature (garden bed) name, analogous to GardenBedData.
 class HistoryData {
-  /// Unique identifier of the history record (nullable if inserting a new record).
+  /// Unique identifier of the history record (nullable
+  /// if inserting a new record).
   int? id;
 
   /// The ID of the garden‐feature (e.g. a garden bed).
@@ -27,18 +28,19 @@ class HistoryData {
   DateTime modifiedDate;
 
   HistoryData({
-    this.id,
     required this.gardenFeatureId,
     required this.featureName,
     required this.eventStart,
-    this.eventDuration,
     required this.createdDate,
     required this.modifiedDate,
+    this.id,
+    this.eventDuration,
   });
 
   /// Build a HistoryData from a raw [History] entity plus its feature name.
   ///
-  /// You must supply `featureName` by looking up the corresponding GardenBed (or other feature).
+  /// You must supply `featureName` by looking up 
+  /// the corresponding GardenBed (or other feature).
   HistoryData.fromHistory(
     History history, {
     required this.featureName,
@@ -60,19 +62,18 @@ class HistoryData {
         'modifiedDate': modifiedDate.toIso8601String(),
       };
 
-  /// Constructs a `HistoryData` from a JSON map (e.g. incoming in an API response).
-  factory HistoryData.fromJson(Map<String, dynamic> json) {
-    return HistoryData(
-      id: json['id'] as int?,
-      gardenFeatureId: json['gardenFeatureId'] as int,
-      featureName: json['featureName'] as String,
-      eventStart: DateTime.parse(json['eventStart'] as String),
-      eventDuration:
-          Duration(seconds: json['eventDurationSeconds'] as int? ?? 0),
-      createdDate: DateTime.parse(json['createdDate'] as String),
-      modifiedDate: DateTime.parse(json['modifiedDate'] as String),
-    );
-  }
+  /// Constructs a `HistoryData` from a JSON map
+  /// (e.g. incoming in an API response).
+  factory HistoryData.fromJson(Map<String, dynamic> json) => HistoryData(
+        id: json['id'] as int?,
+        gardenFeatureId: json['gardenFeatureId'] as int,
+        featureName: json['featureName'] as String,
+        eventStart: DateTime.parse(json['eventStart'] as String),
+        eventDuration:
+            Duration(seconds: json['eventDurationSeconds'] as int? ?? 0),
+        createdDate: DateTime.parse(json['createdDate'] as String),
+        modifiedDate: DateTime.parse(json['modifiedDate'] as String),
+      );
 
   /// Convenience getter: returns eventStart formatted as `YYYY/MM/DD HH:MM`.
   String get eventStartString {
@@ -85,7 +86,8 @@ class HistoryData {
     return '$y/$m/$d $hh:$mm';
   }
 
-  /// Convenience getter: returns eventDuration in “Xm Ys” format, or “In Progress”.
+  /// Convenience getter: returns eventDuration in “Xm Ys” 
+  /// format, or “In Progress”.
   String get durationString {
     if (eventDuration == null) {
       return 'In Progress';

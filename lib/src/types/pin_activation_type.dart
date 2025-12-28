@@ -30,12 +30,11 @@ enum PinActivationType {
   String toJson() => name;
 
   /// Constructs a `PinActivationType` from a JSON string.
-  factory PinActivationType.fromJson(String json) {
-    return PinActivationType.values.firstWhere(
-      (e) => e.name == json,
-      orElse: () => throw ArgumentError('Invalid PinActivationType: $json'),
-    );
-  }
+  factory PinActivationType.fromJson(String json) =>
+      PinActivationType.values.firstWhere(
+        (e) => e.name == json,
+        orElse: () => throw ArgumentError('Invalid PinActivationType: $json'),
+      );
 }
 
 /// Represents the state of a GPIO pin.
@@ -47,10 +46,8 @@ enum PinVoltage {
   String toJson() => name;
 
   /// Constructs a [PinVoltage] from a JSON string.
-  factory PinVoltage.fromJson(String json) {
-    return PinVoltage.values.firstWhere(
-      (e) => e.name == json,
-      orElse: () => throw ArgumentError('Invalid PinVoltage: $json'),
-    );
-  }
+  factory PinVoltage.fromJson(String json) => PinVoltage.values.firstWhere(
+        (e) => e.name == json,
+        orElse: () => throw ArgumentError('Invalid PinVoltage: $json'),
+      );
 }

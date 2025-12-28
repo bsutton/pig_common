@@ -1,12 +1,13 @@
 import 'package:fixed/fixed.dart';
-import 'package:pig_common/src/types/pin_activation_type.dart';
 
 import '../types/endpoint_type.dart';
+import '../types/pin_activation_type.dart';
 import 'entities.dart';
 
 class EndPoint extends Entity<EndPoint> {
   EndPoint({
     required super.id,
+    required this.ordinal,
     required this.name,
     required this.endPointType,
     required this.activationType,
@@ -24,6 +25,7 @@ class EndPoint extends Entity<EndPoint> {
     required this.endPointType,
     required this.activationType,
     required this.gpioPinNo,
+    this.ordinal = 0,
     this.drainLine = false,
     this.startAmps,
     this.runningAmps,
@@ -32,6 +34,7 @@ class EndPoint extends Entity<EndPoint> {
 
   EndPoint.forUpdate({
     required super.entity,
+    required this.ordinal,
     required this.name,
     required this.endPointType,
     required this.activationType,
@@ -44,6 +47,7 @@ class EndPoint extends Entity<EndPoint> {
 
   factory EndPoint.fromMap(Map<String, dynamic> map) => EndPoint(
         id: map['id'] as int,
+        ordinal: map['ordinal'] as int, // ← new
         name: map['end_point_name'] as String,
         endPointType:
             EndPointType.values.byName(map['end_point_type'] as String),
@@ -67,6 +71,7 @@ class EndPoint extends Entity<EndPoint> {
   @override
   Map<String, dynamic> toMap() => {
         'id': id,
+        'ordinal': ordinal, // ← new
         'end_point_name': name,
         'end_point_type': endPointType.name,
         'activation_type': activationType.name,
@@ -79,6 +84,7 @@ class EndPoint extends Entity<EndPoint> {
         'modified_date': modifiedDate.toIso8601String(),
       };
 
+  int ordinal; // ← new
   String name;
   EndPointType endPointType;
   PinActivationType activationType;
@@ -93,5 +99,6 @@ class EndPoint extends Entity<EndPoint> {
   bool get isDrainingLine => drainLine;
 
   @override
-  String toString() => 'EndPoint: $name, pin: $gpioPinNo, $activationType';
+  String toString() => '''
+EndPoint($id): $name, pin: $gpioPinNo, $activationType, ordinal: $ordinal''';
 }

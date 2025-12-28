@@ -1,19 +1,19 @@
-import 'package:pig_common/pig_common.dart';
+import '../../pig_common.dart';
 
 class GardenBedListData {
   GardenBedListData({
     this.beds = const <GardenBedData>[],
-    this.valves = const <EndPointInfo>[],
-    this.masterValves = const <EndPointInfo>[],
+    this.valves = const <EndPointData>[],
+    this.masterValves = const <EndPointData>[],
   });
 
   List<GardenBedData> beds;
 
   /// List of available valves
-  List<EndPointInfo> valves;
+  List<EndPointData> valves;
 
   /// List of available master valves
-  List<EndPointInfo> masterValves;
+  List<EndPointData> masterValves;
 
   /// Converts the `GardenBedListData` instance to a JSON-serializable object.
   Map<String, dynamic> toJson() => {
@@ -33,13 +33,13 @@ class GardenBedListData {
             const <GardenBedData>[],
         valves: (json['valves'] as List<dynamic>?)
                 ?.map((valve) =>
-                    EndPointInfo.fromJson(valve as Map<String, dynamic>))
+                    EndPointData.fromJson(valve as Map<String, dynamic>))
                 .toList() ??
-            const <EndPointInfo>[],
+            const <EndPointData>[],
         masterValves: (json['masterValves'] as List<dynamic>?)
                 ?.map((masterValve) =>
-                    EndPointInfo.fromJson(masterValve as Map<String, dynamic>))
+                    EndPointData.fromJson(masterValve as Map<String, dynamic>))
                 .toList() ??
-            const <EndPointInfo>[],
+            const <EndPointData>[],
       );
 }

@@ -9,9 +9,8 @@ enum EndPointType {
   /// Display name for the enum value.
   final String displayName;
 
-  static EndPointType fromName(String name) {
-    return values.firstWhere((value) => value.name == name);
-  }
+  static EndPointType fromName(String name) =>
+      values.firstWhere((value) => value.name == name);
 
   @override
   String toString() => displayName;

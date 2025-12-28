@@ -46,23 +46,21 @@ class OverviewData {
   /// Standard “fromJson” constructor for your existing fields. If your
   /// server doesn’t return “temp”, “forecastHigh”, etc., you can default them
   /// to zero here, since OverviewApi will overwrite them afterwards.
-  factory OverviewData.fromJson(Map<String, dynamic> json) {
-    return OverviewData(
-      gardenBedsCount: json['gardenBedsCount'] as int,
-      endpointsCount: json['endpointsCount'] as int,
-      lastWateringEvents: (json['lastWateringEvents'] as List<dynamic>)
-          .map((e) => WateringEvent.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  factory OverviewData.fromJson(Map<String, dynamic> json) => OverviewData(
+        gardenBedsCount: json['gardenBedsCount'] as int,
+        endpointsCount: json['endpointsCount'] as int,
+        lastWateringEvents: (json['lastWateringEvents'] as List<dynamic>)
+            .map((e) => WateringEvent.fromJson(e as Map<String, dynamic>))
+            .toList(),
 
-      // If your server did NOT send “temp” fields, default everything to 0.0
-      // We’ll patch them in after we call BomApi.
-      temp: (json['temp'] as num?)?.toDouble() ?? 0.0,
-      forecastHigh: (json['forecastHigh'] as num?)?.toDouble() ?? 0.0,
-      forecastLow: (json['forecastLow'] as num?)?.toDouble() ?? 0.0,
-      rain24: (json['rain24'] as num?)?.toDouble() ?? 0.0,
-      rain7days: (json['rain7days'] as num?)?.toDouble() ?? 0.0,
-    );
-  }
+        // If your server did NOT send “temp” fields, default everything to 0.0
+        // We’ll patch them in after we call BomApi.
+        temp: (json['temp'] as num?)?.toDouble() ?? 0.0,
+        forecastHigh: (json['forecastHigh'] as num?)?.toDouble() ?? 0.0,
+        forecastLow: (json['forecastLow'] as num?)?.toDouble() ?? 0.0,
+        rain24: (json['rain24'] as num?)?.toDouble() ?? 0.0,
+        rain7days: (json['rain7days'] as num?)?.toDouble() ?? 0.0,
+      );
 
   /// If you ever need to send an OverviewData back as JSON, implement toJson():
   Map<String, dynamic> toJson() => {
@@ -71,7 +69,8 @@ class OverviewData {
         'lastWateringEvents':
             lastWateringEvents.map((e) => e.toJson()).toList(),
 
-        // Send your weather fields (though most of the time you won’t post them):
+        // Send your weather fields (though most of the time
+        // you won’t post them):
         'temp': temp,
         'forecastHigh': forecastHigh,
         'forecastLow': forecastLow,

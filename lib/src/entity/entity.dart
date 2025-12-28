@@ -18,6 +18,7 @@ abstract class Entity<T> {
   DateTime modifiedDate;
 
   @override
+  // because these fields are stable
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(covariant Entity<T> other) {
     if (identical(this, other) ||
@@ -30,6 +31,7 @@ abstract class Entity<T> {
   }
 
   @override
+  // because these fields are stable
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(id, createdDate, modifiedDate);
 

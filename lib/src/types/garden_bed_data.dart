@@ -1,4 +1,4 @@
-import 'package:pig_common/pig_common.dart';
+import '../../pig_common.dart';
 
 class GardenBedData {
   GardenBedData({

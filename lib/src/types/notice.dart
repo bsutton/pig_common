@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:pig_common/pig_common.dart';
+import '../../pig_common.dart';
 
 /// Different types of notices sent to WebSocket listeners.
 enum NoticeType {
@@ -44,22 +44,20 @@ class Notice {
       };
 
   /// Converts a [Map] to a [Notice] instance.
-  factory Notice.fromJson(Map<String, dynamic> json) {
-    return Notice(
-      noticeType: NoticeType.values.firstWhere(
-        (e) => e.toString() == json['noticeType'],
-        orElse: () =>
-            throw ArgumentError('Invalid notice type: ${json['noticeType']}'),
-      ),
-      featureId: json['featureId'] as int,
-      featureType: FeatureType.values.firstWhere(
-        (e) => e.toString() == json['featureType'],
-        orElse: () =>
-            throw ArgumentError('Invalid feature type: ${json['featureType']}'),
-      ),
-      description: json['description'] as String,
-    );
-  }
+  factory Notice.fromJson(Map<String, dynamic> json) => Notice(
+        noticeType: NoticeType.values.firstWhere(
+          (e) => e.toString() == json['noticeType'],
+          orElse: () =>
+              throw ArgumentError('Invalid notice type: ${json['noticeType']}'),
+        ),
+        featureId: json['featureId'] as int,
+        featureType: FeatureType.values.firstWhere(
+          (e) => e.toString() == json['featureType'],
+          orElse: () => throw ArgumentError(
+              'Invalid feature type: ${json['featureType']}'),
+        ),
+        description: json['description'] as String,
+      );
 
   @override
   String toString() => jsonEncode(toJson());
