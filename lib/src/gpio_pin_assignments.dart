@@ -1,5 +1,6 @@
 /// Used to map header pin numbers to the GPIO pin name.
 enum GPIOPinAssignment {
+  none(-1, -1),
   gpio2(2, 3),
   gpio3(3, 5),
   gpio4(4, 7),
