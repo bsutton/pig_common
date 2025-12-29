@@ -9,6 +9,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   fixed: ^6.1.1
+  meta: ^1.17.0
 
 dev_dependencies:
   dcli: ^8.2.1

@@ -15,4 +15,6 @@ export 'notice.dart';
 export 'overview_data.dart';
 export 'pin_activation_type.dart';
 export 'weather_bureau_data.dart';
+export 'weather_day_forecast_data.dart';
+export 'weather_location_data.dart';
 export 'weather_station_data.dart';
