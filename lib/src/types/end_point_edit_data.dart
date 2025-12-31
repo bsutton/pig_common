@@ -2,6 +2,12 @@ import '../../pig_common.dart';
 
 /// Data returned from `/end_point/edit_data`
 class EndPointEditData {
+  final EndPointData? endPoint;
+
+  final List<GPIOPinAssignment> availablePins;
+
+  final List<PinActivationType> activationTypes;
+
   EndPointEditData({
     required this.availablePins,
     required this.activationTypes,
@@ -29,7 +35,4 @@ class EndPointEditData {
       activationTypes: acts,
     );
   }
-  final EndPointData? endPoint; // null if new
-  final List<GPIOPinAssignment> availablePins;
-  final List<PinActivationType> activationTypes;
 }

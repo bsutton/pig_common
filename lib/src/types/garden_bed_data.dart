@@ -1,6 +1,31 @@
 import '../../pig_common.dart';
 
 class GardenBedData {
+  /// [id] can be null if we are creating a new bed
+  int? id;
+
+  String? name;
+
+  String? description;
+
+  int? valveId;
+
+  int? masterValveId;
+
+  bool allowDelete;
+
+  bool isOn;
+
+  /// If the bed is running on a timer this will
+  /// contain the remaining time.
+  Duration remainingDuration;
+
+  /// Last watering date and time
+  DateTime? lastWateringDateTime;
+
+  /// Duration of the last watering event in seconds
+  int? lastWateringDuration;
+
   GardenBedData({
     this.id,
     this.name,
@@ -26,39 +51,6 @@ class GardenBedData {
         valveId = bed.valveId,
         masterValveId = bed.masterValveId;
 
-  /// [id] can be null if we are creating a new bed
-  int? id;
-  String? name;
-  String? description;
-  int? valveId;
-  int? masterValveId;
-  bool allowDelete;
-  bool isOn;
-
-  /// If the bed is running on a timer this will
-  /// contain the remaining time.
-  Duration remainingDuration;
-
-  /// Last watering date and time
-  DateTime? lastWateringDateTime;
-
-  /// Duration of the last watering event in seconds
-  int? lastWateringDuration;
-
-  /// Converts the `GardenBedData` instance to a JSON-serializable object.
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'description': description,
-        'valveId': valveId,
-        'masterValveId': masterValveId,
-        'allowDelete': allowDelete,
-        'isOn': isOn,
-        'remainingDuration': remainingDuration.inSeconds,
-        'lastWateringDateTime': lastWateringDateTime?.toIso8601String(),
-        'lastWateringDuration': lastWateringDuration,
-      };
-
   /// Constructs a `GardenBedData` from a JSON object.
   factory GardenBedData.fromJson(Map<String, dynamic> json) => GardenBedData(
         id: json['id'] as int?,
@@ -74,6 +66,20 @@ class GardenBedData {
             : null,
         lastWateringDuration: json['lastWateringDuration'] as int?,
       );
+
+  /// Converts the `GardenBedData` instance to a JSON-serializable object.
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'valveId': valveId,
+        'masterValveId': masterValveId,
+        'allowDelete': allowDelete,
+        'isOn': isOn,
+        'remainingDuration': remainingDuration.inSeconds,
+        'lastWateringDateTime': lastWateringDateTime?.toIso8601String(),
+        'lastWateringDuration': lastWateringDuration,
+      };
 
   /// Optional convenience getters
   String get lastWateringDateTimeString => lastWateringDateTime != null

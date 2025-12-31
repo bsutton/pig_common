@@ -25,23 +25,20 @@ enum FeatureType {
 
 /// Encapsulates a message that can be sent to a listening WebSocket client.
 class Notice {
+  final NoticeType noticeType;
+
+  final FeatureType featureType;
+
+  final int featureId;
+
+  final String description;
+
   Notice({
     required this.noticeType,
     required this.featureType,
     required this.featureId,
     required this.description,
   });
-  final NoticeType noticeType;
-  final FeatureType featureType;
-  final int featureId;
-  final String description;
-
-  Map<String, dynamic> toJson() => {
-        'noticeType': noticeType.toString(),
-        'featureId': featureId,
-        'featureType': featureType.toString(),
-        'description': description,
-      };
 
   /// Converts a [Map] to a [Notice] instance.
   factory Notice.fromJson(Map<String, dynamic> json) => Notice(
@@ -58,6 +55,13 @@ class Notice {
         ),
         description: json['description'] as String,
       );
+
+  Map<String, dynamic> toJson() => {
+        'noticeType': noticeType.toString(),
+        'featureId': featureId,
+        'featureType': featureType.toString(),
+        'description': description,
+      };
 
   @override
   String toString() => jsonEncode(toJson());

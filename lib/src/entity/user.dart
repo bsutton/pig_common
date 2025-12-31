@@ -1,6 +1,22 @@
 import 'entity.dart'; // Assuming you have a base Entity class
 
 class User extends Entity<User> {
+  String username;
+
+  String description;
+
+  String password;
+
+  bool isAdministrator;
+
+  String? securityToken;
+
+  DateTime? tokenExpiryDate;
+
+  Duration? tokenLivesFor;
+
+  String? emailAddress;
+
   User({
     required super.id,
     required this.username,
@@ -70,13 +86,4 @@ class User extends Entity<User> {
         'created_date': createdDate.toIso8601String(),
         'modified_date': modifiedDate.toIso8601String(),
       };
-
-  String username;
-  String description;
-  String password;
-  bool isAdministrator;
-  String? securityToken;
-  DateTime? tokenExpiryDate;
-  Duration? tokenLivesFor;
-  String? emailAddress;
 }

@@ -1,6 +1,20 @@
 import '../../pig_common.dart';
 
 class EndPointData {
+  final int? id;
+
+  final int ordinal;
+
+  final String name;
+
+  final GPIOPinAssignment gpioPinAssignment;
+
+  final PinActivationType activationType;
+
+  final bool isOn;
+
+  final EndPointType endPointType;
+
   EndPointData({
     required this.id,
     required this.ordinal,
@@ -19,6 +33,18 @@ class EndPointData {
         gpioPinAssignment = GPIOPinAssignment.getByPinNo(endPoint.gpioPinNo),
         endPointType = endPoint.endPointType,
         isOn = on;
+
+  factory EndPointData.fromJson(Map<String, dynamic> json) => EndPointData(
+        id: json['id'] as int?,
+        ordinal: json['ordinal'] as int? ?? 0,
+        name: json['name'] as String,
+        activationType:
+            PinActivationType.fromJson(json['activationType'] as String),
+        gpioPinAssignment: GPIOPinAssignment.fromJson(
+            json['pinAssignment'] as Map<String, dynamic>),
+        endPointType: EndPointType.fromName(json['endPointType'] as String),
+        isOn: json['isOn'] as bool,
+      );
 
   EndPoint toEndPoint() {
     final entity = EndPoint(
@@ -41,18 +67,6 @@ class EndPointData {
         gpioPinNo: gpioPinAssignment.gpioPin);
   }
 
-  factory EndPointData.fromJson(Map<String, dynamic> json) => EndPointData(
-        id: json['id'] as int?,
-        ordinal: json['ordinal'] as int? ?? 0,
-        name: json['name'] as String,
-        activationType:
-            PinActivationType.fromJson(json['activationType'] as String),
-        gpioPinAssignment: GPIOPinAssignment.fromJson(
-            json['pinAssignment'] as Map<String, dynamic>),
-        endPointType: EndPointType.fromName(json['endPointType'] as String),
-        isOn: json['isOn'] as bool,
-      );
-
   /// Converts an EndPointInfo to JSON, including ordinal.
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -63,12 +77,4 @@ class EndPointData {
         'endPointType': endPointType.name,
         'isOn': isOn,
       };
-
-  final int? id;
-  final int ordinal;
-  final String name;
-  final GPIOPinAssignment gpioPinAssignment;
-  final PinActivationType activationType;
-  final bool isOn;
-  final EndPointType endPointType;
 }

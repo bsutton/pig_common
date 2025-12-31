@@ -15,21 +15,6 @@ import 'weather_day_forecast_data.dart';
 ///   – double rain24
 ///   – double rain7days
 class OverviewData {
-  OverviewData({
-    required this.gardenBedsCount,
-    required this.endpointsCount,
-    required this.lastWateringEvents,
-    required this.weatherBureauName,
-    required this.weatherStationName,
-    // The five new “weather” fields:
-    required this.temp,
-    required this.forecastHigh,
-    required this.forecastLow,
-    required this.rain24,
-    required this.rain7days,
-    required this.rainForecastNext3Days,
-  });
-
   /// Count of configured garden beds (from your existing back-end).
   final int gardenBedsCount;
 
@@ -48,12 +33,31 @@ class OverviewData {
   // ─────────────────────────────────────────────────────────────────
   // NEW: weather info (all required, non-nullable)
   double temp;
+
   double forecastHigh;
+
   double forecastLow;
+
   double rain24;
+
   double rain7days;
+
   List<WeatherDayForecastData> rainForecastNext3Days;
-  // ─────────────────────────────────────────────────────────────────
+
+  OverviewData({
+    required this.gardenBedsCount,
+    required this.endpointsCount,
+    required this.lastWateringEvents,
+    required this.weatherBureauName,
+    required this.weatherStationName,
+    // The five new “weather” fields:
+    required this.temp,
+    required this.forecastHigh,
+    required this.forecastLow,
+    required this.rain24,
+    required this.rain7days,
+    required this.rainForecastNext3Days,
+  });
 
   /// Standard “fromJson” constructor for your existing fields. If your
   /// server doesn’t return “temp”, “forecastHigh”, etc., you can default them
@@ -104,6 +108,12 @@ class OverviewData {
 
 /// Data class for watering events
 class WateringEvent {
+  final DateTime start;
+
+  final int durationMinutes;
+
+  final String gardenBedName;
+
   WateringEvent({
     required this.start,
     required this.durationMinutes,
@@ -122,8 +132,4 @@ class WateringEvent {
         'durationMinutes': durationMinutes,
         'gardenBedName': gardenBedName,
       };
-
-  final DateTime start;
-  final int durationMinutes;
-  final String gardenBedName;
 }

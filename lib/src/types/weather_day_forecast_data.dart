@@ -1,4 +1,16 @@
 class WeatherDayForecastData {
+  final String date;
+
+  final double minTempC;
+
+  final double maxTempC;
+
+  final double rainChancePercent;
+
+  final double rainMinMm;
+
+  final double rainMaxMm;
+
   WeatherDayForecastData({
     required this.date,
     required this.minTempC,
@@ -27,11 +39,4 @@ class WeatherDayForecastData {
         'rainMinMm': rainMinMm,
         'rainMaxMm': rainMaxMm,
       };
-
-  final String date;
-  final double minTempC;
-  final double maxTempC;
-  final double rainChancePercent;
-  final double rainMinMm;
-  final double rainMaxMm;
 }

@@ -1,6 +1,10 @@
 import 'entity.dart';
 
 class Version extends Entity<Version> {
+  final int dbVersion;
+
+  final String codeVersion;
+
   Version({
     required super.id,
     required this.dbVersion,
@@ -30,9 +34,6 @@ class Version extends Entity<Version> {
             DateTime.tryParse(map['modified_date'] as String? ?? '') ??
                 DateTime.now(),
       );
-
-  final int dbVersion;
-  final String codeVersion;
 
   @override
   Map<String, dynamic> toMap() => {

@@ -2,6 +2,24 @@ import 'entity.dart';
 import 'garden_feature.dart';
 
 class GardenBed extends Entity<GardenBed> implements GardenFeature {
+  @override
+  String name;
+
+  String? description;
+
+  DateTime? nextWatering;
+
+  int moistureContent;
+
+  /// The id of the EndPoint for the value that
+  /// waters this garden bed.
+  int valveId;
+
+  /// The id of the EndPoint for the master value
+  /// which must be open for this garden bed's
+  /// valve to operate.
+  int? masterValveId;
+
   GardenBed({
     required super.id,
     required this.name,
@@ -59,21 +77,6 @@ class GardenBed extends Entity<GardenBed> implements GardenFeature {
         'created_date': createdDate.toIso8601String(),
         'modified_date': modifiedDate.toIso8601String(),
       };
-
-  @override
-  String name;
-  String? description;
-  DateTime? nextWatering;
-  int moistureContent;
-
-  /// The id of the EndPoint for the value that
-  /// waters this garden bed.
-  int valveId;
-
-  /// The id of the EndPoint for the master value
-  /// which must be open for this garden bed's
-  /// valve to operate.
-  int? masterValveId;
 
   @override
   int getPrimaryEndPoint() => valveId;

@@ -2,6 +2,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 class WeatherLocationData {
+  final String id;
+
+  final String name;
+
+  final String state;
+
+  final String geohash;
+
   const WeatherLocationData({
     required this.id,
     required this.name,
@@ -23,11 +31,6 @@ class WeatherLocationData {
         'state': state,
         'geohash': geohash,
       };
-
-  final String id;
-  final String name;
-  final String state;
-  final String geohash;
 
   @override
   bool operator ==(Object other) =>

@@ -1,8 +1,15 @@
 abstract class Entity<T> {
+  int id;
+
+  DateTime createdDate;
+
+  DateTime modifiedDate;
+
   Entity(
       {required this.id,
       required this.createdDate,
       required this.modifiedDate});
+
   Entity.forInsert()
       : id = -1,
         createdDate = DateTime.now(),
@@ -12,10 +19,6 @@ abstract class Entity<T> {
       : id = entity.id,
         createdDate = entity.createdDate,
         modifiedDate = DateTime.now();
-
-  int id;
-  DateTime createdDate;
-  DateTime modifiedDate;
 
   @override
   // because these fields are stable

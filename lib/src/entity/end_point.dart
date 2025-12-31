@@ -5,6 +5,25 @@ import '../types/pin_activation_type.dart';
 import 'entities.dart';
 
 class EndPoint extends Entity<EndPoint> {
+  int ordinal;
+
+  String name;
+
+  EndPointType endPointType;
+
+  PinActivationType activationType;
+
+  /// gpio pin no (as opposed to the header pin number)
+  int gpioPinNo;
+
+  bool drainLine;
+
+  Fixed? startAmps;
+
+  Fixed? runningAmps;
+
+  Duration? startupInterval;
+
   EndPoint({
     required super.id,
     required this.ordinal,
@@ -83,18 +102,6 @@ class EndPoint extends Entity<EndPoint> {
         'created_date': createdDate.toIso8601String(),
         'modified_date': modifiedDate.toIso8601String(),
       };
-
-  int ordinal; // ← new
-  String name;
-  EndPointType endPointType;
-  PinActivationType activationType;
-
-  /// gpio pin no (as opposed to the header pin number)
-  int gpioPinNo;
-  bool drainLine;
-  Fixed? startAmps;
-  Fixed? runningAmps;
-  Duration? startupInterval;
 
   bool get isDrainingLine => drainLine;
 

@@ -1,6 +1,12 @@
 import 'entities.dart';
 
 class History extends Entity<History> {
+  int gardenFeatureId;
+
+  DateTime eventStart;
+
+  Duration? eventDuration;
+
   History({
     required super.id,
     required this.gardenFeatureId,
@@ -43,10 +49,6 @@ class History extends Entity<History> {
         'created_date': createdDate.toIso8601String(),
         'modified_date': modifiedDate.toIso8601String(),
       };
-
-  int gardenFeatureId;
-  DateTime eventStart;
-  Duration? eventDuration;
 
   void markEventComplete() {
     eventDuration = DateTime.now().difference(eventStart);

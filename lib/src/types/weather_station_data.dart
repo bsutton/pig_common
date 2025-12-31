@@ -1,5 +1,11 @@
 /// Minimal representation of a weather station.
 class WeatherStationData {
+  final int bureauId;
+
+  final String stationId;
+
+  final String name;
+
   WeatherStationData({
     required this.bureauId,
     required this.stationId,
@@ -18,10 +24,6 @@ class WeatherStationData {
         'stationId': stationId,
         'name': name,
       };
-
-  final int bureauId;
-  final String stationId;
-  final String name;
 }
 
 /// Shared BOM weather station definition without fetch logic.
