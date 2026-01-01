@@ -12,6 +12,8 @@ class GardenBedData {
 
   int? masterValveId;
 
+  int ordinal;
+
   bool allowDelete;
 
   bool isOn;
@@ -32,6 +34,7 @@ class GardenBedData {
     this.description,
     this.valveId,
     this.masterValveId,
+    this.ordinal = 0,
     this.allowDelete = false,
     this.isOn = false,
     this.remainingDuration = Duration.zero,
@@ -49,7 +52,8 @@ class GardenBedData {
         name = bed.name,
         description = bed.description,
         valveId = bed.valveId,
-        masterValveId = bed.masterValveId;
+        masterValveId = bed.masterValveId,
+        ordinal = bed.ordinal;
 
   /// Constructs a `GardenBedData` from a JSON object.
   factory GardenBedData.fromJson(Map<String, dynamic> json) => GardenBedData(
@@ -58,6 +62,7 @@ class GardenBedData {
         description: json['description'] as String?,
         valveId: json['valveId'] as int?,
         masterValveId: json['masterValveId'] as int?,
+        ordinal: json['ordinal'] as int? ?? 0,
         allowDelete: json['allowDelete'] as bool? ?? false,
         isOn: json['isOn'] as bool? ?? false,
         remainingDuration: Duration(seconds: json['remainingDuration'] as int),
@@ -74,6 +79,7 @@ class GardenBedData {
         'description': description,
         'valveId': valveId,
         'masterValveId': masterValveId,
+        'ordinal': ordinal,
         'allowDelete': allowDelete,
         'isOn': isOn,
         'remainingDuration': remainingDuration.inSeconds,
